@@ -34,4 +34,12 @@ $(document).ready(function() {
   randomNumGenerator = () => {
     return Math.floor(Math.random() * 102) + 19;
   };
+
+  initializeGame = () => {
+    //reset the game, set the score to 0, generate new crystals and show a new random number to match
+    NumToMatch = 0;
+    crystals = generateCrystals();
+    randomNum = randomNumGenerator();
+    $('#randomNum').text(randomNum);
+  };
 });
