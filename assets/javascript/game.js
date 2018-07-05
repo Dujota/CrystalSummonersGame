@@ -62,5 +62,25 @@ $(document).ready(function() {
       initializeGame();
     }
   };
+
+  renderCrystals = () => {
+    for (const crystal in crystals) {
+      let crystalDiv = $(
+        `<div class="crystal-button" data-name="${crystal}"></div>`
+      );
+      let crystalImg = $(
+        `<img src="${
+          crystals[crystal].imageUrl
+        }" alt="${crystal}" class="crystal-img">`
+      );
+      crystalDiv.append(crystalImg);
+      $('#crystals').append(crystalDiv);
+    }
+  };
+
+  updateMatchingNumber = crystalClicked => {
+    CurrentGuess += crystals[crystal.attr('data-name')].randomValue;
+  };
+
   initializeGame();
 });
