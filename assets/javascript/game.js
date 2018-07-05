@@ -68,9 +68,7 @@ $(document).ready(function() {
 
   renderCrystals = () => {
     for (const crystal in crystals) {
-      let crystalDiv = $(
-        `<div class="crystal-button" data-name="${crystal}"></div>`
-      );
+      let crystalDiv = $(`<div class="crystal-button"></div>`);
       let crystalImg = $(
         `<img src="${
           crystals[crystal].imageUrl
@@ -82,8 +80,8 @@ $(document).ready(function() {
   };
 
   // update the current score to the page with the clicked by passign th ecurrent crytal to the crystals array and accessing the random valye prop
-  updateMatchingNumber = crystalClicked => {
-    CurrentScore += crystals[crystal.attr('data-name')].randomValue;
+  updateMatchingNumber = crystal => {
+    CurrentScore += crystals[crystal.alt].randomValue;
   };
 
   renderMatchingNumber = () => {
@@ -96,8 +94,18 @@ $(document).ready(function() {
   renderMatchingNumber();
 
   // Logic complete, now can handle the click
-  $('.crystal-button').on('click', () => {
-    updateMatchingNumber($(this));
+  $('.crystal-button').on('click', e => {
+    updateMatchingNumber(e.target);
     renderMatchingNumber();
+
+    if (CurrentScore === randomNum) {
+      wins++;
+      initializeGame();
+      updateGame();
+    } else if (CurrentScore > randomNum) {
+      losses++;
+      initializeGame();
+      updateGame();
+    }
   });
 });
