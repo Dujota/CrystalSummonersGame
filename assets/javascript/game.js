@@ -41,29 +41,31 @@ $(document).ready(function() {
     crystals = generateCrystals();
     randomNum = randomNumGenerator();
     $('#randomNum').text(randomNum);
+    CurrentScore = 0;
   };
 
   // check game status
   updateGame = didUserWin => {
     $('#wins').empty();
     $('#losses').empty();
-    $('#message').empty();
+    $('#score').empty();
 
     //check for a win/loss
     if (didUserWin === true) {
       wins++;
       $('#wins').text(wins);
-      $('#message').text(`You Win! Yay!`);
+      alert(`You Win! Yay!`);
       initializeGame();
     } else if (didUserWin === false) {
       losses++;
       $('#losses').text(losses);
-      $('#message').text(`You Lose :(`);
+      alert(`You Lose :(`);
       initializeGame();
     }
 
     $('#losses').text(losses);
     $('#wins').text(wins);
+    $('#score').text(CurrentScore);
   };
 
   renderCrystals = () => {
@@ -101,11 +103,11 @@ $(document).ready(function() {
     if (CurrentScore === randomNum) {
       wins++;
       initializeGame();
-      updateGame();
+      updateGame(true);
     } else if (CurrentScore > randomNum) {
       losses++;
       initializeGame();
-      updateGame();
+      updateGame(false);
     }
   });
 });
