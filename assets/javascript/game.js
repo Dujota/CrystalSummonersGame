@@ -50,7 +50,15 @@ $(document).ready(function() {
 
     //check for a win/loss
     if (didUserWin === true) {
+      wins++;
+      $('#wins').text = wins;
+      $('#message').text = `You Win! Yay!`;
+      initializeGame();
     } else {
+      losses++;
+      $('#losses').text = losses;
+      $('#message').text = `You Lose :(`;
+      initializeGame();
     }
   };
 });
