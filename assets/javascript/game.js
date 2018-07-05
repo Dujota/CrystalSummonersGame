@@ -52,15 +52,18 @@ $(document).ready(function() {
     //check for a win/loss
     if (didUserWin === true) {
       wins++;
-      $('#wins').text = wins;
-      $('#message').text = `You Win! Yay!`;
+      $('#wins').text(wins);
+      $('#message').text(`You Win! Yay!`);
       initializeGame();
-    } else {
+    } else if (didUserWin === false) {
       losses++;
-      $('#losses').text = losses;
-      $('#message').text = `You Lose :(`;
+      $('#losses').text(losses);
+      $('#message').text(`You Lose :(`);
       initializeGame();
     }
+
+    $('#losses').text(losses);
+    $('#wins').text(wins);
   };
 
   renderCrystals = () => {
@@ -84,9 +87,17 @@ $(document).ready(function() {
   };
 
   renderMatchingNumber = () => {
-    $('#score').text = CurrentScore;
+    $('#score').text(CurrentScore);
   };
 
   initializeGame();
   renderCrystals();
+  updateGame();
+  renderMatchingNumber();
+
+  // Logic complete, now can handle the click
+  $('.crystal-button').on('click', () => {
+    updateMatchingNumber($(this));
+    renderMatchingNumber();
+  });
 });
