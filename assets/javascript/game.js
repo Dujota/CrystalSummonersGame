@@ -42,4 +42,15 @@ $(document).ready(function() {
     randomNum = randomNumGenerator();
     $('#randomNum').text(randomNum);
   };
+
+  updateGame = didUserWin => {
+    $('#wins').empty();
+    $('#losses').empty();
+    $('#message').empty();
+
+    //check for a win/loss
+    if (didUserWin === true) {
+    } else {
+    }
+  };
 });
