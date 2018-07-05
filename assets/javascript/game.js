@@ -5,7 +5,7 @@ $(document).ready(function() {
   };
 
   //Game Variales
-  let CurrentGuess = 0;
+  let CurrentScore = 0;
   let NumToMatch = randomNumGenerator();
 
   // UI Variables
@@ -78,9 +78,15 @@ $(document).ready(function() {
     }
   };
 
+  // update the current score to the page with the clicked by passign th ecurrent crytal to the crystals array and accessing the random valye prop
   updateMatchingNumber = crystalClicked => {
-    CurrentGuess += crystals[crystal.attr('data-name')].randomValue;
+    CurrentScore += crystals[crystal.attr('data-name')].randomValue;
+  };
+
+  renderMatchingNumber = () => {
+    $('#score').text = CurrentScore;
   };
 
   initializeGame();
+  renderCrystals();
 });
