@@ -1,5 +1,9 @@
 // Wait for the DOM to load
 $(document).ready(function() {
+  randomNumGenerator = () => {
+    return Math.floor(Math.random() * 102) + 19;
+  };
+
   //Game Variales
   let CurrentGuess = 0;
   let NumToMatch = randomNumGenerator();
@@ -31,10 +35,6 @@ $(document).ready(function() {
     };
   };
 
-  randomNumGenerator = () => {
-    return Math.floor(Math.random() * 102) + 19;
-  };
-
   initializeGame = () => {
     //reset the game, set the score to 0, generate new crystals and show a new random number to match
     NumToMatch = 0;
@@ -43,6 +43,7 @@ $(document).ready(function() {
     $('#randomNum').text(randomNum);
   };
 
+  // check game status
   updateGame = didUserWin => {
     $('#wins').empty();
     $('#losses').empty();
@@ -61,4 +62,5 @@ $(document).ready(function() {
       initializeGame();
     }
   };
+  initializeGame();
 });
